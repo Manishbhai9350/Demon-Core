@@ -43,11 +43,9 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
-
-
 .speech {
   text-transform: capitalize;
-  width: 100vw;
+  width: 70vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -59,16 +57,19 @@ body {
 .text-box {
   display: inline;
   position: relative;
-  margin-inline: .1rem;
-  margin-block: .1rem;
+  margin-inline: 0.1rem;
+  margin-block: 0.1rem;
   opacity: 0;
+  p {
+    opacity: 0;
+  }
   .hider {
-    width: 110%;
+    width: 100%;
     height: 110%;
     background: white;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
   }
 }

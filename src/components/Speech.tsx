@@ -13,15 +13,12 @@ const Speech = ({ text, progress }: speechProps) => {
     <div className="speech">
       {speechText.map((t, i) => {
         return (
-          <>
-            <TextBox
-              progIndex={(i + 1) / speechText.length}
-              progress={progress}
-              key={`i-${t}`}
-              text={t}
-            />
-            &nbsp;
-          </>
+          <TextBox
+            progIndex={(i + 1) / speechText.length}
+            progress={progress}
+            key={i}
+            text={t}
+          />
         );
       })}
     </div>
