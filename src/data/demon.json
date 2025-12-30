@@ -1,0 +1,159 @@
+{
+  "project": "Demon Core",
+  "theme": "archival_radiation",
+  "chapters": [
+    {
+      "id": "object",
+      "title": "The Object",
+      "totalDuration": 22,
+      "audio": "audio/01-object.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 8,
+          "text": "In 1945, a small sphere of plutonium rested at Los Alamos Laboratory. It was unfinished. Silent. And extremely dense."
+        },
+        {
+          "start": 9,
+          "end": 18,
+          "text": "It was intended for a third atomic weapon. The war ended before it was ever used."
+        },
+        {
+          "start": 18,
+          "end": 22,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "criticality",
+      "title": "Criticality",
+      "totalDuration": 30,
+      "audio": "audio/02-criticality.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 12,
+          "text": "The core was capable of reaching a state known as criticality — when a nuclear reaction sustains itself."
+        },
+        {
+          "start": 13,
+          "end": 24,
+          "text": "Surrounding materials could reflect neutrons back into the core, increasing the reaction without any visible change."
+        },
+        {
+          "start": 24,
+          "end": 30,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "experiments",
+      "title": "The Experiments",
+      "totalDuration": 34,
+      "audio": "audio/03-experiments.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 14,
+          "text": "Scientists conducted hands-on experiments, manually adjusting reflectors around the core."
+        },
+        {
+          "start": 15,
+          "end": 28,
+          "text": "Safety protocols were informal by modern standards. The danger was understood, but not yet fully respected."
+        },
+        {
+          "start": 28,
+          "end": 34,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "accidents",
+      "title": "The Accidents",
+      "totalDuration": 36,
+      "audio": "audio/04-accidents.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 14,
+          "text": "On two separate occasions, the core was accidentally pushed beyond criticality."
+        },
+        {
+          "start": 15,
+          "end": 28,
+          "text": "The reactions were brief. The consequences were not."
+        },
+        {
+          "start": 28,
+          "end": 36,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "aftermath",
+      "title": "Aftermath",
+      "totalDuration": 28,
+      "audio": "audio/05-aftermath.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 14,
+          "text": "Following the accidents, hands-on criticality testing was discontinued."
+        },
+        {
+          "start": 15,
+          "end": 24,
+          "text": "The core itself was melted down and repurposed."
+        },
+        {
+          "start": 24,
+          "end": 28,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "lesson",
+      "title": "The Lesson",
+      "totalDuration": 32,
+      "audio": "audio/06-lesson.mp3",
+      "segments": [
+        {
+          "start": 0,
+          "end": 14,
+          "text": "The Demon Core left no monument. Only procedures, protocols, and memory."
+        },
+        {
+          "start": 15,
+          "end": 26,
+          "text": "It remains a reminder of how invisible forces demand restraint."
+        },
+        {
+          "start": 26,
+          "end": 32,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "title": "Silence",
+      "totalDuration": 20,
+      "audio": null,
+      "segments": [
+        {
+          "start": 0,
+          "end": 20,
+          "text": ""
+        }
+      ]
+    }
+  ]
+}
+
+
