@@ -15,7 +15,7 @@ const App = () => {
 
   const paras = [t1, t2];
 
-  const [text, setText] = useState<string>(paras[1]);
+  const [clicked, setClicked] = useState(false)
 
   const { speechProgress, para } = useControls({
     speechProgress: {
@@ -23,13 +23,23 @@ const App = () => {
       min: 0,
       max: 1,
       step: 0.001,
+    },
+    para:{
+      value:0,
+      options:[0,1]
     }
   });
 
+  
+
   return (
-    <div>
-      <Speech text={text} progress={speechProgress} />
-    </div>
+    <main onClick={() => {
+      if(!clicked) setClicked(true)
+    }}>
+      {
+        clicked ? <Speech para={para} paras={paras} progress={speechProgress} /> : <p>Click To Continue</p>
+      }
+    </main>
   );
 };
 
