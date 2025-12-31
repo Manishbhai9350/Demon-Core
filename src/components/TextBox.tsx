@@ -16,39 +16,63 @@ const TextBox = ({ text, progress, progIndex }: TextBoxProps) => {
 
   useGSAP(() => {
     const tl = gsap.timeline();
+    if (progress == 0) {
+      setHidden(true);
+      gsap.killTweensOf([hider.current, container.current]);
+      tl.to(hider.current, {
+        opacity: 1,
+      });
+      tl.to(container.current, {
+        opacity: 0,
+      });
+      tl.to(
+        textPara.current,
+        {
+          opacity: 0,
+        },
+        "<"
+      );
+      return;
+    }
     if (progress >= progIndex && hidden) {
       setHidden(false);
-      gsap.killTweensOf([hider.current,container.current])
+      gsap.killTweensOf([hider.current, container.current]);
       tl.to(container.current, {
         opacity: 1,
       });
       tl.to(hider.current, {
         opacity: 0,
       });
-      tl.to(textPara.current, {
-        opacity: 1,
-      },'<');
+      tl.to(
+        textPara.current,
+        {
+          opacity: 1,
+        },
+        "<"
+      );
     } else if (progress < progIndex && !hidden) {
       setHidden(true);
-      gsap.killTweensOf([hider.current,container.current])
+      gsap.killTweensOf([hider.current, container.current]);
       tl.to(hider.current, {
         opacity: 1,
       });
       tl.to(container.current, {
         opacity: 0,
       });
-      tl.to(textPara.current, {
-        opacity: 0
-      },'<');
+      tl.to(
+        textPara.current,
+        {
+          opacity: 0,
+        },
+        "<"
+      );
     }
   }, [progress]);
 
   return (
     <>
       <div ref={container} className="text-box">
-        <p ref={textPara} >
-            {text}
-        </p>
+        <p ref={textPara}>{text}</p>
         <div ref={hider} className="hider"></div>
       </div>
       &nbsp;

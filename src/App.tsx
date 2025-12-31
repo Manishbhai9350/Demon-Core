@@ -4,6 +4,7 @@ import Speech from "./components/Speech.tsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useState } from "react";
+import CoreData from "./data/demon.json";
 
 gsap.registerPlugin(useGSAP);
 
@@ -15,30 +16,67 @@ const App = () => {
 
   const paras = [t1, t2];
 
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(false);
 
-  const { speechProgress, para } = useControls({
-    speechProgress: {
-      value: 0,
-      min: 0,
-      max: 1,
-      step: 0.001,
-    },
-    para:{
-      value:0,
-      options:[0,1]
+  const [Data, setData] = useState(CoreData);
+  const [ChapterIdx, setChapterIdx] = useState(0);
+  const [SegmentIdx, setSegmentIdx] = useState(0);
+  const [Chapter, setChapter] = useState(Data.chapters[ChapterIdx].id);
+  const [Segment, setSegment] = useState(
+    Data.chapters[ChapterIdx].segments[SegmentIdx]
+  );
+
+  function OnSegmentComplete() {
+    const nextSegment = Data.chapters[ChapterIdx].segments[SegmentIdx + 1];
+
+    if (nextSegment) {
+      setTimeout(() => {
+        setSegmentIdx((p) => p + 1);
+      }, 2000);
     }
-  });
+  }
 
-  
+  useEffect(() => {
+    setSegment(Data.chapters[ChapterIdx].segments[SegmentIdx]);
+    return () => {};
+  }, [SegmentIdx]);
+
+  useEffect(() => {
+    return () => {};
+  }, [Segment]);
+
+  // const { speechProgress, para } = useControls({
+  //   speechProgress: {
+  //     value: 0,
+  //     min: 0,
+  //     max: 1,
+  //     step: 0.001,
+  //   },
+  //   para:{
+  //     value:0,
+  //     options:[0,1]
+  //   }
+  // });
 
   return (
-    <main onClick={() => {
-      if(!clicked) setClicked(true)
-    }}>
-      {
-        clicked ? <Speech para={para} paras={paras} progress={speechProgress} /> : <p>Click To Continue</p>
-      }
+    <main
+      onClick={() => {
+        if (!clicked) setClicked(true);
+      }}
+    >
+      {clicked ? (
+        <Speech
+          chapterIdx={ChapterIdx}
+          setChapterIdx={setChapterIdx}
+          chapter={Chapter}
+          setChapter={setChapter}
+          segment={Segment}
+          setSegment={setSegment}
+          onComplete={OnSegmentComplete}
+        />
+      ) : (
+        <p>Click To Continue</p>
+      )}
     </main>
   );
 };

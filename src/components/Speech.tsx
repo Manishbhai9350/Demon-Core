@@ -1,49 +1,77 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextBox from "./TextBox";
 import AudioPlayer from "./AudioPlayer";
 
+type AudioSegment = {
+  type: "audio";
+  audio: string;
+  start: number;
+  end: number;
+  text: string;
+};
+
+type SilenceSegment = {
+  type: "silence";
+  duration: number;
+};
+
+type SegmentProps = AudioSegment | SilenceSegment;
+
+
 interface speechProps {
-  progress: number;
-  paras: string[];
-  para: number;
+  chapterIdx: number;
+  setChapterIdx: React.Dispatch<React.SetStateAction<number>>; 
+  chapter: string;
+  setChapter: React.Dispatch<React.SetStateAction<string>>;
+  segment: SegmentProps;
+  setSegment: React.Dispatch<React.SetStateAction<SegmentProps>>;
+  onComplete: () => null;
 }
 
-const Speech = ({ para, paras, progress }: speechProps) => {
-  const [speechText, setSpeechText] = useState<string[]>(paras[para].split(" "));
+const Speech = ({ chapter, chapterIdx, segment, setChapter, setChapterIdx, setSegment, onComplete }: speechProps) => {
+  const [speechText, setSpeechText] = useState<string[]>(
+    segment.text?.split(' ')
+  );
 
-  const audio = AudioPlayer({
-    src:'/public/audio1.mp3',
-    from:0,
-    to:31,
-    onUpdate(progress) {
-      console.log(progress)
-    },
-  })
+  const [Progress, setProgress] = useState(0)
+
 
   useEffect(() => {
-    
-    setSpeechText(
-      paras[para].split(" ")
-    )
 
+    if(segment.type == 'audio' && segment.text) {
+      setProgress(0)
+      setSpeechText(segment.text.split(' '))
+    }
     return () => {
       
     }
-  }, [para])
+  }, [segment])
   
 
   return (
     <div className="speech">
-      {speechText && speechText.map((t, i) => {
-        return (
-          <TextBox
-            progIndex={(i + 1) / speechText.length}
-            progress={progress}
-            key={i}
-            text={t}
-          />
-        );
-      })}
+      {speechText &&
+        speechText.map((t, i) => {
+          return (
+            <TextBox
+              progIndex={(i) / speechText.length}
+              progress={Progress}
+              key={i}
+              text={t}
+            />
+          );
+        })}
+      {
+        (segment.type == 'audio') && (
+          <AudioPlayer
+            segment={segment}
+            onUpdate={(progress) => {
+              setProgress(progress /* - (1 / speechText.length) * (1 - progress) */);
+            }}
+            onComplete={onComplete}
+            />
+          )
+        }
     </div>
   );
 };

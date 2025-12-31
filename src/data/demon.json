@@ -9,14 +9,14 @@
       "segments": [
         {
           "type": "audio",
-          "audio":"audio1.mp3",
+          "audio":"/transcripts/audio1.mp3",
           "start": 0,
           "end": 10,
           "text": "In 1945, a small sphere of plutonium rested at Los Alamos Laboratory. It was unfinished. Silent. And extremely dense."
         },
         {
           "type": "audio",
-          "audio":"audio1.mp3",
+          "audio":"/transcripts/audio1.mp3",
           "start": 10,
           "end": 15,
           "text": "It was intended for a third atomic weapon. The war ended before it was ever used."
@@ -34,14 +34,14 @@
       "segments": [
         {
           "type": "audio",
-          "audio":"audio1.mp3",
+          "audio":"/transcripts/audio1.mp3",
           "start": 15,
           "end": 21,
           "text": "The core was capable of reaching a state known as criticality — when a nuclear reaction sustains itself."
         },
         {
           "type": "audio",
-          "audio":"audio1.mp3",
+          "audio":"/transcripts/audio1.mp3",
           "start": 22,
           "end": 29,
           "text": "Surrounding materials could reflect neutrons back into the core, increasing the reaction without any visible change."
@@ -58,13 +58,13 @@
       "totalDuration": 17,
       "segments": [
         {
-          "audio":"audio2.mp3",
+          "audio":"/transcripts/audio2.mp3",
           "start": 0,
           "end": 5,
           "text": "Scientists conducted hands-on experiments, manually adjusting reflectors around the core."
         },
         {
-          "audio":"audio2.mp3",
+          "audio":"/transcripts/audio2.mp3",
           "start": 5,
           "end": 13,
           "text": "Safety protocols were informal by modern standards. The danger was understood, but not yet fully respected."
@@ -81,13 +81,13 @@
       "totalDuration": 14,
       "segments": [
         {
-          "audio":"audio2.mp3",
+          "audio":"/transcripts/audio2.mp3",
           "start": 13,
           "end": 19,
           "text": "On two separate occasions, the core was accidentally pushed beyond criticality."
         },
         {
-          "audio":"audio2.mp3",
+          "audio":"/transcripts/audio2.mp3",
           "start": 19,
           "end": 22,
           "text": "The reactions were brief. The consequences were not."
@@ -104,7 +104,7 @@
       "totalDuration": 13,
       "segments": [
         {
-          "audio":"audio2.mp3",
+          "audio":"/transcripts/audio2.mp3",
           "start": 23,
           "end": 27,
           "text": "Following the accidents, hands-on criticality testing was discontinued."
@@ -124,7 +124,7 @@
       "id": "lesson",
       "title": "The Lesson",
       "totalDuration": 32,
-      "audio": "audio/06-lesson.mp3",
+      "audio": "/transcripts/audio1.mp3",
       "segments": [
         {
           "start": 0,
@@ -147,7 +147,7 @@
       "id": "silence",
       "title": "Silence",
       "totalDuration": 20,
-      "audio": null,
+      "audio": "/transcripts/audio1.mp3",
       "segments": [
         {
           "start": 0,
