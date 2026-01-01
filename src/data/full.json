@@ -137,6 +137,36 @@
           "duration": 4
         }
       ]
+    },
+    {
+      "id": "lesson",
+      "title": "The Lesson",
+      "totalDuration": 31,
+      "start":0,
+      "end":26,
+      "segments": [
+        {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
+          "start": 0,
+          "end": 14,
+          "text": "The Demon Core left no monument. Only procedures, protocols, and memory."
+        },
+        {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
+          "start": 15,
+          "end": 26,
+          "text": "It remains a reminder of how invisible forces demand restraint."
+        },
+        {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
+          "start": 26,
+          "end": 32,
+          "text": ""
+        }
+      ]
     }
   ]
 }

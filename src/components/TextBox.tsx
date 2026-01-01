@@ -1,12 +1,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
+import type { TextBoxProps } from "../Types";
 
-interface TextBoxProps {
-  text: string;
-  progress: number;
-  progIndex: number;
-}
 
 const TextBox = ({ text, progress, progIndex }: TextBoxProps) => {
   const [hidden, setHidden] = useState(true);
