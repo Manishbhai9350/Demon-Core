@@ -34,7 +34,7 @@ const UI = () => {
     <>
       <Lessons setChapterIdx={setChapterIdx} speechDone={SpeechDone} chapterIdx={ChapterIdx} chapters={CoreData.chapters} />
       <Speech
-        speechDone={SpeechDone}
+        speechDone={SpeechDone && ChapterIdx == CoreData.chapters.length - 1}
         chapterIdx={ChapterIdx}
         segmentIdx={SegmentIdx}
         chapter={Chapter}

@@ -15,7 +15,7 @@ const Lessons = ({
 
 
   const [Music, setMusic] = useState(true)
-  const [Media, setMedia] = useState(true)
+  const [Media, setMedia] = useState(false)
 
   useGSAP(() => {
     const titles = document.querySelectorAll(".chapter .title");
