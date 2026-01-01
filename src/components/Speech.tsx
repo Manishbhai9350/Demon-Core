@@ -5,6 +5,8 @@ import Title from "./Lessons";
 import type { speechProps } from "../Types";
 
 const Speech = ({
+  music,
+  media,
   speechDone,
   chapter,
   chapterIdx,
@@ -71,6 +73,8 @@ const Speech = ({
         })}
       {segment.type == "audio" && (
         <AudioPlayer
+          music={music}
+          media={media}
           segment={segment}
           onUpdate={(progress) => {
             setProgress(

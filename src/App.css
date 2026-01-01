@@ -93,11 +93,28 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: black;
   .button {
+    cursor: pointer;
+    position: relative;
     height: 100%;
     aspect-ratio: 1;
     background: white;
     border-radius: 3px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button .music {
+    transform: all .3s ease;
+    line-height: 1rem;
+    position: absolute;
+  }
+  .button .media {
+    transform: all .3s ease;
+    line-height: 1rem;
+    position: absolute;  
   }
   margin-bottom: 1rem;
 }
