@@ -19,7 +19,7 @@ const AudioPlayer = ({ segment, onUpdate, onComplete }: AudioPlayerProps) => {
   const completedRef = useRef(false);
   const timeOut = useRef<number>(0)
 
-  console.log(segment)
+  // console.log(segment)
 
   useEffect(() => {
     const audio = audioRef.current;

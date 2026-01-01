@@ -5,18 +5,18 @@
     {
       "id": "object",
       "title": "The Object",
-      "totalDuration": 19,
+      "totalDuration": 19.5,
       "segments": [
         {
           "type": "audio",
-          "audio":"/transcripts/audio1.mp3",
+          "audio": "/transcripts/audio1.mp3",
           "start": 0,
           "end": 10.5,
           "text": "In 1945, a small sphere of plutonium rested at Los Alamos Laboratory. It was unfinished. Silent. And extremely dense."
         },
         {
           "type": "audio",
-          "audio":"/transcripts/audio1.mp3",
+          "audio": "/transcripts/audio1.mp3",
           "start": 10.5,
           "end": 15.5,
           "text": "It was intended for a third atomic weapon. The war ended before it was ever used."
@@ -30,128 +30,128 @@
     {
       "id": "criticality",
       "title": "Criticality",
-      "totalDuration": 34,
+      "totalDuration": 17.4,
       "segments": [
         {
           "type": "audio",
-          "audio":"/transcripts/audio1.mp3",
+          "audio": "/transcripts/audio1.mp3",
           "start": 15.6,
           "end": 22,
           "text": "The core was capable of reaching a state known as criticality — when a nuclear reaction sustains itself."
         },
         {
           "type": "audio",
-          "audio":"/transcripts/audio1.mp3",
+          "audio": "/transcripts/audio1.mp3",
           "start": 22,
           "end": 29,
           "text": "Surrounding materials could reflect neutrons back into the core, increasing the reaction without any visible change."
         },
         {
-         "type":"silence",
-          "duration":4
+          "type": "silence",
+          "duration": 4
         }
       ]
     },
     {
       "id": "experiments",
       "title": "The Experiments",
-      "totalDuration": 17,
+      "totalDuration": 16.5,
       "segments": [
         {
-          "audio":"/transcripts/audio2.mp3",
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 0,
           "end": 5,
           "text": "Scientists conducted hands-on experiments, manually adjusting reflectors around the core."
         },
         {
-          "audio":"/transcripts/audio2.mp3",
-          "start": 5,
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
+          "start": 5.5,
           "end": 13,
           "text": "Safety protocols were informal by modern standards. The danger was understood, but not yet fully respected."
         },
         {
-          "type":"silence",
-          "duration":4
+          "type": "silence",
+          "duration": 4
         }
       ]
     },
     {
       "id": "accidents",
       "title": "The Accidents",
-      "totalDuration": 14,
+      "totalDuration": 13,
       "segments": [
         {
-          "audio":"/transcripts/audio2.mp3",
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 13,
           "end": 19,
           "text": "On two separate occasions, the core was accidentally pushed beyond criticality."
         },
         {
-          "audio":"/transcripts/audio2.mp3",
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 19,
-          "end": 22,
+          "end": 23,
           "text": "The reactions were brief. The consequences were not."
         },
         {
-          "type":"silence",
-          "duraiton":4
+          "type": "silence",
+          "duration": 4
         }
       ]
     },
     {
       "id": "aftermath",
       "title": "Aftermath",
-      "totalDuration": 13,
+      "totalDuration": 11,
       "segments": [
         {
-          "audio":"/transcripts/audio2.mp3",
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 23,
-          "end": 27,
+          "end": 28,
           "text": "Following the accidents, hands-on criticality testing was discontinued."
         },
         {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 28,
           "end": 31,
           "text": "The core itself was melted down and repurposed."
         },
         {
-          "type":"silence",
-          "duraiton":4
+          "type": "silence",
+          "duration": 4
         }
       ]
     },
     {
       "id": "lesson",
       "title": "The Lesson",
-      "totalDuration": 32,
-      "audio": "/transcripts/audio1.mp3",
+      "totalDuration": 31,
+      "audio": "/transcripts/audio2.mp3",
       "segments": [
         {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 0,
           "end": 14,
           "text": "The Demon Core left no monument. Only procedures, protocols, and memory."
         },
         {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 15,
           "end": 26,
           "text": "It remains a reminder of how invisible forces demand restraint."
         },
         {
+          "type": "audio",
+          "audio": "/transcripts/audio2.mp3",
           "start": 26,
           "end": 32,
-          "text": ""
-        }
-      ]
-    },
-    {
-      "id": "silence",
-      "title": "Silence",
-      "totalDuration": 20,
-      "audio": "/transcripts/audio1.mp3",
-      "segments": [
-        {
-          "start": 0,
-          "end": 20,
           "text": ""
         }
       ]
