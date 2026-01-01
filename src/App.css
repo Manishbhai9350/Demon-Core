@@ -64,6 +64,13 @@ main {
   margin-top: 10rem;
 }
 
+.title {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .text-box {
   display: inline;
   position: relative;

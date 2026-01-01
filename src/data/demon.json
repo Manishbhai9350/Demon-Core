@@ -11,14 +11,14 @@
           "type": "audio",
           "audio":"/transcripts/audio1.mp3",
           "start": 0,
-          "end": 10,
+          "end": 10.5,
           "text": "In 1945, a small sphere of plutonium rested at Los Alamos Laboratory. It was unfinished. Silent. And extremely dense."
         },
         {
           "type": "audio",
           "audio":"/transcripts/audio1.mp3",
-          "start": 10,
-          "end": 15,
+          "start": 10.5,
+          "end": 15.5,
           "text": "It was intended for a third atomic weapon. The war ended before it was ever used."
         },
         {
@@ -35,8 +35,8 @@
         {
           "type": "audio",
           "audio":"/transcripts/audio1.mp3",
-          "start": 15,
-          "end": 21,
+          "start": 15.6,
+          "end": 22,
           "text": "The core was capable of reaching a state known as criticality — when a nuclear reaction sustains itself."
         },
         {

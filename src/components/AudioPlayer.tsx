@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-interface segmentProps {
+interface SegmentProps {
   type: "audio";
   audio: string;
   start: number;
@@ -9,63 +9,73 @@ interface segmentProps {
 }
 
 interface AudioPlayerProps {
-  segment:segmentProps;
+  segment: SegmentProps;
   onUpdate: (progress: number) => void;
   onComplete: () => void;
 }
 
-const AudioPlayer = ({ onUpdate, onComplete, segment }: AudioPlayerProps) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const Completed = useRef<boolean>(false)
+const AudioPlayer = ({ segment, onUpdate, onComplete }: AudioPlayerProps) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const completedRef = useRef(false);
+  const timeOut = useRef<number>(0)
 
-  
+  console.log(segment)
+
   useEffect(() => {
-    
-    if(!audioRef.current) return;
-    
-    Completed.current = false
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    
-    audioRef.current.currentTime = segment.start;
-    audioRef.current.play();
-    console.log(segment)
-    console.log(audioRef.current.currentTime)
+    completedRef.current = false;
+
+    // force reload when segment changes
+    audio.pause();
+    audio.src = segment.audio;
+    audio.load();
 
     const duration = segment.end - segment.start;
 
-    const handleTimeUpdate = () => {
-      if (!audioRef.current) return;
+    const onLoadedMetadata = () => {
+      audio.currentTime = segment.start;
 
-      const t = audioRef.current.currentTime;
+      clearTimeout(timeOut.current)
+      timeOut.current = setTimeout(() => {
+        audio.play().catch(() => {
+          /* user gesture already happened */
+        });
+      }, 1000);
+    };
 
-      // stop at `to`
+    const onTimeUpdate = () => {
+      const t = audio.currentTime;
+
+      
       if (t >= segment.end) {
-        if(Completed.current) return;
-        Completed.current = true;
-        audioRef.current.currentTime = segment.end;
-        audioRef.current.pause();
+        if (completedRef.current) return;
+        completedRef.current = true;
+        audio.currentTime = segment.end;
+        audio.pause();
         onUpdate(1);
-        onComplete()
+        onComplete();
         return;
       }
 
-      // progress 0 → 1
-      const progress = (t - segment.start) / duration;
+      const progress = (t - segment.start) / duration * 1.1;
+      // console.log(segment.start,segment.end,t,progress)
       onUpdate(Math.max(0, Math.min(1, progress)));
     };
 
-    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("loadedmetadata", onLoadedMetadata);
+    audio.addEventListener("timeupdate", onTimeUpdate);
 
     return () => {
-      if(!audioRef.current) return;
-      audioRef.current.pause();
-      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
-      audioRef.current = null;
+      clearTimeout(timeOut.current)
+      audio.pause();
+      audio.removeEventListener("loadedmetadata", onLoadedMetadata);
+      audio.removeEventListener("timeupdate", onTimeUpdate);
     };
+  }, [segment.audio, segment.start, segment.end, onComplete, onUpdate]);
 
-  }, [segment, onComplete, onUpdate]);
-
-  return <audio ref={audioRef} src={segment.audio}  />;
+  return <audio ref={audioRef} preload="auto" />;
 };
 
 export default AudioPlayer;

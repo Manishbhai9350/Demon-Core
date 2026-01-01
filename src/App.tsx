@@ -21,29 +21,42 @@ const App = () => {
   const [Data, setData] = useState(CoreData);
   const [ChapterIdx, setChapterIdx] = useState(0);
   const [SegmentIdx, setSegmentIdx] = useState(0);
-  const [Chapter, setChapter] = useState(Data.chapters[ChapterIdx].id);
+  const [Chapter, setChapter] = useState(Data.chapters[ChapterIdx]);
   const [Segment, setSegment] = useState(
     Data.chapters[ChapterIdx].segments[SegmentIdx]
   );
 
   function OnSegmentComplete() {
     const nextSegment = Data.chapters[ChapterIdx].segments[SegmentIdx + 1];
+    const nextChapter = Data.chapters[ChapterIdx + 1]
+
+    // console.log(nextSegment)
+    // console.log(nextChapter)
 
     if (nextSegment) {
       setTimeout(() => {
         setSegmentIdx((p) => p + 1);
-      }, 2000);
+      }, 1000);
+      return;
+    }
+
+    if(nextChapter) {
+      setChapterIdx((p) => p + 1)
+      setSegmentIdx(0)
     }
   }
-
+  
   useEffect(() => {
-    setSegment(Data.chapters[ChapterIdx].segments[SegmentIdx]);
+    setTimeout(() => {
+      setSegment(Data.chapters[ChapterIdx].segments[SegmentIdx]);
+    }, 1000);
     return () => {};
   }, [SegmentIdx]);
 
   useEffect(() => {
+    setChapter(Data.chapters[ChapterIdx])
     return () => {};
-  }, [Segment]);
+  }, [ChapterIdx]);
 
   // const { speechProgress, para } = useControls({
   //   speechProgress: {
@@ -71,6 +84,7 @@ const App = () => {
           chapter={Chapter}
           setChapter={setChapter}
           segment={Segment}
+          segmentIdx={SegmentIdx}
           setSegment={setSegment}
           onComplete={OnSegmentComplete}
         />
