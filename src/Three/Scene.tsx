@@ -28,7 +28,7 @@ const Scene = () => {
     <div className="three-canvas">
         <Canvas
         camera={{
-            position:[0,3,5]
+            position:[0,1,6]
         }}
         >
             {/* <mesh>
