@@ -2,6 +2,7 @@ import { useState } from "react";
 import Speech from "./Speech";
 import CoreData from "../data/demon.json";
 import Lessons from "./Lessons";
+import Scene from "../Three/Scene";
 
 const UI = () => {
   const [ChapterIdx, setChapterIdx] = useState(0);
@@ -32,6 +33,7 @@ const UI = () => {
   }
   return (
     <>
+      <Scene />
       <Lessons setChapterIdx={setChapterIdx} speechDone={SpeechDone} chapterIdx={ChapterIdx} chapters={CoreData.chapters} />
       <Speech
         speechDone={SpeechDone && ChapterIdx == CoreData.chapters.length - 1}
