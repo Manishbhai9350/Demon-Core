@@ -49,7 +49,7 @@ main {
   justify-content: center;
   align-items: flex-end;
   padding-block: 2rem;
-  background: #111;
+  background: black;
   /* color: #030d24; */
   color: white;
 }

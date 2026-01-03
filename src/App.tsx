@@ -9,11 +9,11 @@ const App = () => {
   return (
     <main onClick={() => !clicked && setClicked(true)}>
       <Scene />
-      {/* {clicked ? (
+      {clicked ? (
         <UI />
       ) : (
         <p>Click To Continue</p>
-      )} */}
+      )}
     </main>
   );
 };
