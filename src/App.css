@@ -50,6 +50,7 @@ main {
   align-items: flex-end;
   padding-block: 2rem;
   background: #111;
+  /* color: #030d24; */
   color: white;
 }
 
