@@ -6,11 +6,14 @@ import {
   MeshBasicMaterial,
   MeshPhysicalMaterial,
   MeshStandardMaterial,
+  Vector3,
 } from "three";
 
 const DemonCore2 = () => {
+
   const camera = useRef(null);
   const coreRef = useRef(null);
+  const cells = useRef([])
 
   const { scene, nodes } = useGLTF("/models/demon_core.glb");
 
@@ -41,11 +44,18 @@ const DemonCore2 = () => {
   }, []);
 
   useEffect(() => {
+    cells.current = {};
     scene.traverse((node) => {
       if (!node.isMesh) return;
 
       if (node.name.includes("Icosphere")) {
-        node.material = cellMaterial;
+          node.material = cellMaterial;
+          cells.current[node.name] = {
+            object:node,
+            originalPosition:new Vector3(),
+          }
+
+          node.getWorldPosition(cells.current[node.name].originalPosition)
       }
 
       if (node.name == "core_base") {
