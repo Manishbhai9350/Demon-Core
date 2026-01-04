@@ -1,5 +1,6 @@
 import { CameraControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { useControls } from "leva";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
@@ -196,6 +197,12 @@ const DemonCore2 = () => {
       <group ref={coreRef}>
         <primitive object={scene} />
       </group>
+       <EffectComposer>
+        <DepthOfField focusDistance={1} focalLength={0.02} bokehScale={2} height={480} />
+        {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} /> */}
+        {/* <Noise opacity={0.02} /> */}
+        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+      </EffectComposer>
     </>
   );
 };

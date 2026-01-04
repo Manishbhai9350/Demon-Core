@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { CameraControls } from '@react-three/drei'
+import { CameraControls, Stats } from '@react-three/drei'
 import DemonCore from './DemonCore'
 import { useControls } from 'leva'
 import DemonCore2 from './DemonCore2'
@@ -27,6 +27,7 @@ const Scene = () => {
 
   return (
     <div className="three-canvas">
+        <Stats />
         <Canvas
         camera={{
             position:[1.6,.8,1.6]
@@ -36,8 +37,8 @@ const Scene = () => {
                 <boxGeometry />
                 <meshBasicMaterial color={0xff0000} />
             </mesh> */}
-            <directionalLight position={[5,5,5]} lookAt={[0,0,0]} color={"#ffffff"} intensity={8} />
-            <directionalLight position={[1.6,.8,1.6]} lookAt={[0,0,0]} color={"#5b637a"} intensity={5} />
+            <directionalLight position={[5,5,5]} lookAt={[0,0,0]} color={"#ffffff"} intensity={2} />
+            {/* <directionalLight position={[1.6,.8,1.6]} lookAt={[0,0,0]} color={"#5b637a"} intensity={5} /> */}
             {/* <DemonCore ly={ly} scale={scale} position={[0,y,0]} /> */}
             <DemonCore2 />
         </Canvas>
