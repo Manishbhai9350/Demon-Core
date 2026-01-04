@@ -12,7 +12,7 @@ const App = () => {
 
 
   return (
-    <main onClick={() => !clicked && setClicked(true)}>
+    <main>
       <Scene />
       {clicked && <UI />}
       <LoadingOverlay progress={Math.ceil(loaded/total)} clicked={clicked} setClicked={setClicked} />

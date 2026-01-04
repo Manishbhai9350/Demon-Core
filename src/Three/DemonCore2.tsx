@@ -4,6 +4,8 @@ import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-thr
 import { useControls } from "leva";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { BlendFunction } from 'postprocessing'
+
 import {
   Color,
   MeshPhysicalMaterial,
@@ -29,7 +31,7 @@ const DemonCore2 = () => {
   const mouseObserver = useRef(null);
   const intersecting = useRef<boolean>(false);
 
-  const { scene, nodes } = useGLTF("/models/demon_core.glb");
+  const { scene, nodes } = useGLTF("/models/demon_core-compressed.glb");
 
   const raycaster = new Raycaster();
   const mouse2D = new Vector2();
@@ -51,7 +53,7 @@ const DemonCore2 = () => {
     scene.traverse((node) => {
       if (!node.isMesh) return;
 
-      if (node.name.includes("Icosphere")) {
+      if (node.name.includes("demon-fractured_cell")) {
         node.material = cellMaterial;
         cells.current[node.name] = {
           object: node,
@@ -130,25 +132,55 @@ const DemonCore2 = () => {
     };
   }, []);
 
-  // const { radius, force } = useControls({
-  //   radius: {
-  //     value: .8,
-  //     min: 0.1,
-  //     max: 1,
+  // const { 
+  //   noise,
+  //   darkness,
+  //   eskil,
+  //   offset,
+  //   blend
+  //  } = useControls({
+  //   eskil:{
+  //     value:false
   //   },
-  //   force: {
-  //     value: .1,
-  //     min: 0,
-  //     max: .2,
-  //     step: 0.001,
+  //   offset:{
+  //     value:.1,
+  //     min:0,
+  //     max:.5
   //   },
+  //   darkness:{
+  //     value:1.1,
+  //     min:0,
+  //     max:2
+  //   },
+  //   noise:{
+  //     value:.02,
+  //     min:0,
+  //     max:.1
+  //   },
+  //   blend:{
+  //     value:BlendFunction.SCREEN,
+  //     options:BlendFunction
+  //   }
   // });
 
-  const { force,radius } = {
+  const { 
+    force,
+    radius,
+    blend,
+    darkness,
+    eskil,
+    noise,
+    offset
+   } = {
     radius: .5,
-    force:-.2
+    force:-.2,
+    eskil:false,
+    offset:innerWidth < 900 ? .1 : .1,
+    darkness:innerWidth < 900 ? 1.1 : 1,
+    noise:innerWidth < 900 ? .02 : .007,
+    blend:BlendFunction.SCREEN
   }
-
+  
   useFrame((_, delta) => {
     if (!coreRef.current || !cells.current) return;
 
@@ -198,10 +230,10 @@ const DemonCore2 = () => {
         <primitive object={scene} />
       </group>
        <EffectComposer>
-        <DepthOfField focusDistance={1} focalLength={0.02} bokehScale={2} height={480} />
+        {/* <DepthOfField focusDistance={1} focalLength={0.02} bokehScale={2} height={480} /> */}
         {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} /> */}
-        {/* <Noise opacity={0.02} /> */}
-        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+        <Noise opacity={noise} blendFunction={blend} />
+        <Vignette eskil={eskil} offset={offset} darkness={darkness} />
       </EffectComposer>
     </>
   );
