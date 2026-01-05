@@ -2,7 +2,6 @@ import { useState } from "react";
 import Speech from "./Speech";
 import CoreData from "../data/demon.json";
 import Lessons from "./Lessons";
-import Scene from "../Three/Scene";
 
 const UI = () => {
   const [ChapterIdx, setChapterIdx] = useState(0);
@@ -31,9 +30,16 @@ const UI = () => {
         console.log('Speech Done')
     }
   }
+
+  function ReStart(){
+    setSpeechDone(false)
+    setChapterIdx(0);
+    setSegmentIdx(0);
+  }
+
   return (
     <>
-      <Lessons setChapterIdx={setChapterIdx} speechDone={SpeechDone} chapterIdx={ChapterIdx} chapters={CoreData.chapters} />
+      <Lessons restart={ReStart} setChapterIdx={setChapterIdx} speechDone={SpeechDone} chapterIdx={ChapterIdx} chapters={CoreData.chapters} />
       <Speech
         speechDone={SpeechDone && ChapterIdx == CoreData.chapters.length - 1}
         chapterIdx={ChapterIdx}
