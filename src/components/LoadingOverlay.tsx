@@ -22,6 +22,8 @@ const LoadingOverlay = ({
   useEffect(() => {
     if (!ringRef.current) return;
 
+    gsap.killTweensOf(ringRef.current)
+
     gsap.to(ringRef.current, {
       strokeDashoffset: CIRCUMFERENCE * (1 - progress),
       duration: 0.4,
@@ -34,7 +36,7 @@ const LoadingOverlay = ({
     if (!clicked || !containerRef.current) return;
 
      gsap.to(ringRef.current, {
-      strokeDashoffset: 1,
+      strokeDashoffset: CIRCUMFERENCE,
       duration: 0.2,
       ease: "power2.out",
     });
