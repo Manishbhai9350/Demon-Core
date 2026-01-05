@@ -33,7 +33,6 @@ const UI = () => {
   }
   return (
     <>
-      <Scene />
       <Lessons setChapterIdx={setChapterIdx} speechDone={SpeechDone} chapterIdx={ChapterIdx} chapters={CoreData.chapters} />
       <Speech
         speechDone={SpeechDone && ChapterIdx == CoreData.chapters.length - 1}

@@ -1,7 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { CameraControls, Stats } from '@react-three/drei'
-import DemonCore from './DemonCore'
-import { useControls } from 'leva'
+import { Stats } from '@react-three/drei'
 import DemonCore2 from './DemonCore2'
 
 const Scene = () => {
@@ -29,6 +27,7 @@ const Scene = () => {
     <div className="three-canvas">
         <Stats />
         <Canvas
+        dpr={1}
         camera={{
             position:[1.6,.8,1.6]
         }}

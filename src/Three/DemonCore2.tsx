@@ -1,10 +1,16 @@
 import { CameraControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import {
+  Bloom,
+  DepthOfField,
+  EffectComposer,
+  Noise,
+  Vignette,
+} from "@react-three/postprocessing";
 import { useControls } from "leva";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
-import { BlendFunction } from 'postprocessing'
+import { BlendFunction } from "postprocessing";
 
 import {
   Color,
@@ -59,9 +65,17 @@ const DemonCore2 = () => {
           object: node,
           originalPosition: new Vector3(),
           targetPosition: new Vector3(),
+          distance: 0,
         };
 
         node.getWorldPosition(cells.current[node.name].originalPosition);
+        cells.current[node.name].direction = cells.current[
+          node.name
+        ].object.position
+          .clone()
+          .normalize(); // local direction
+        cells.current[node.name].distance =
+          cells.current[node.name].object.position.length(); // base radius
       }
 
       if (node.name == "core_base") {
@@ -114,8 +128,8 @@ const DemonCore2 = () => {
 
       const observer = mouseObserver.current;
 
-      raycaster.setFromCamera(mouse2D, camera.current._camera);
-      const intersect = raycaster.intersectObject(observer);
+      raycaster.setFromCamera(mouse2D, camera.current);
+      const intersect = raycaster.intersectObject(observer,false);
 
       if (intersect.length) {
         intersecting.current = true;
@@ -131,8 +145,9 @@ const DemonCore2 = () => {
       window.removeEventListener("mousemove", mouseMove);
     };
   }, []);
+  
 
-  // const { 
+  // const {
   //   noise,
   //   darkness,
   //   eskil,
@@ -163,59 +178,41 @@ const DemonCore2 = () => {
   //   }
   // });
 
-  const { 
-    force,
-    radius,
-    blend,
-    darkness,
-    eskil,
-    noise,
-    offset
-   } = {
-    radius: .5,
-    force:-.2,
-    eskil:false,
-    offset:innerWidth < 900 ? .1 : .1,
-    darkness:innerWidth < 900 ? 1.1 : 1,
-    noise:innerWidth < 900 ? .02 : .007,
-    blend:BlendFunction.SCREEN
-  }
-  
+  const { force, radius, blend, darkness, eskil, noise, offset } = {
+    radius: 0.5,
+    force: -0.2,
+    eskil: false,
+    offset: innerWidth < 900 ? 0.1 : 0.1,
+    darkness: innerWidth < 900 ? 1.1 : 1,
+    noise: innerWidth < 900 ? 0.02 : 0.014,
+    blend: BlendFunction.SCREEN,
+  };
+
   useFrame((_, delta) => {
     if (!coreRef.current || !cells.current) return;
 
     coreRef.current.rotation.y -= delta * 0.08;
 
+
+    // Animating Each Fractured Cell;
     for (const cellName in cells.current) {
       const cell = cells.current[cellName];
 
-      if(intersecting.current) {
-        // world position
-      cell.object.getWorldPosition(worldPosition);
+      let targetDistance = cell.distance;
 
-      // distance from interaction
-      let dist = worldPosition.distanceTo(intersectPoint);
+      if (intersecting.current) {
+        cell.object.getWorldPosition(worldPosition);
 
-      // clamp
-      dist = THREE.MathUtils.clamp(dist, 0, radius);
+        let dist = worldPosition.distanceTo(intersectPoint);
+        dist = THREE.MathUtils.clamp(dist, 0, radius);
 
-      // strength (0 → 1)
-      const strength = 1 - dist / radius;
+        const strength = 1 - dist / radius;
+        targetDistance += strength * force;
+      }
 
-      // direction from interaction to cell
-      const direction = worldPosition.clone().add(intersectPoint).normalize();
+      cell.targetPosition.copy(cell.direction).multiplyScalar(targetDistance);
 
-      // offset
-      const offset = direction.multiplyScalar(strength * force);
-
-      // target
-      cell.targetPosition.copy(cell.originalPosition.clone().add(offset));
-    } else {
-      cell.targetPosition.copy(cell.originalPosition.clone());
-    }
-
-      // 👇 THIS is the missing piece
-      cell.object.position.lerp(cell.targetPosition, .06);
+      cell.object.position.lerp(cell.targetPosition, 0.06);
     }
   });
 
@@ -223,13 +220,17 @@ const DemonCore2 = () => {
     <>
       <ambientLight color={0xffffff} intensity={0.5} />
       <pointLight color={new Color("#1E3FFF")} intensity={200} />
-      <spotLight color={new Color('#ffffff')} intensity={20} position={[0,5,3]} lookAt={[0,0,0]} />
-      <CameraControls makeDefault ref={camera} />
-      {/* <PerspectiveCamera makeDefault ref={camera} lookAt={[0,0,0]} position={[0,1,3.6]} /> */}
+      <spotLight
+        color={new Color("#ffffff")}
+        intensity={20}
+        position={[0, 5, 3]}
+        lookAt={[0, 0, 0]}
+      />
+      <PerspectiveCamera makeDefault={true} ref={camera} position={[0,1,3]} onUpdate={(cam) => cam.lookAt(0, 0, 0)}  />
       <group ref={coreRef}>
         <primitive object={scene} />
       </group>
-       <EffectComposer>
+      <EffectComposer resolutionScale={0.3}>
         {/* <DepthOfField focusDistance={1} focalLength={0.02} bokehScale={2} height={480} /> */}
         {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} /> */}
         <Noise opacity={noise} blendFunction={blend} />
