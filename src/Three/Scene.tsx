@@ -1,5 +1,4 @@
 import { Canvas } from '@react-three/fiber'
-import { Stats } from '@react-three/drei'
 import DemonCore2 from './DemonCore2'
 
 const Scene = () => {
@@ -25,7 +24,6 @@ const Scene = () => {
 
   return (
     <div className="three-canvas">
-        <Stats />
         <Canvas
         dpr={1}
         camera={{
